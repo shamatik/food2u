@@ -29,9 +29,27 @@ nav {
 
 }
 
+#newEmail{
+    width: 30%;
+    margin-left: 65%;
+}
+
+#newUser{
+    width: 30%;
+    margin-left: 65%;
+}
+
+#newPass{
+    width: 30%;
+    margin-left: 65%;
+}
+
 .btn{
     background-color: #a8d3cc;
     
+}
+#createUser{
+    margin-left: 65%;
 }
 
 .marginBottom {
@@ -40,9 +58,13 @@ nav {
 label {
     margin:0;
 }
+#Lista-1{
+    float: left;
+}
 
 .navbar {
     height: 150px; 
+
 }
 
 .logo {
