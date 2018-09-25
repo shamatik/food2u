@@ -14,14 +14,18 @@
     <link rel="stylesheet" type="text/css" href="./assets/style/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand" href="#">Food2U</span>
+    <nav class="navbar navbar-expand-lg" style="background-color: #a8d3cc">
+        <img class="logo" src="./assets/images/mainlogo.png" alt="Your Image" id="bio-image">
+        <span class="navbar-brand" href="#"></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <nav id="bottomnav" class="navbar fixed-bottom">
+                <a class="navbar-brand" href="#"></a>
+              </nav>
         
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <div class="navbar-nav mr-auto py-100">
                 </div>
             <div id="loger">
                 <form class="form-inline my-2 my-lg-0">
@@ -41,6 +45,28 @@
                 <h1 class="marginTop">Food2U Ingridient List Manager</h1>
                 <p class="lead">Create your user or search for recipies!</p>
                 <form style="text-align:left;">
+                    <!-- search var -->     
+                    <div class="row justify-content-center">
+                                <div class="col-12 col-md-10 col-lg-8">
+                                    <form class="card card-sm">
+                                        <div class="card-body row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <i class="fas fa-search h4 text-body"></i>
+                                            </div>
+                                            <!--end of col-->
+                                            <div class="col">
+                                                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for recipes">
+                                            </div>
+                                            <!--end of col-->
+                                            <div class="col-auto">
+                                                <button class="btn btn-lg btn-success" type="submit" style="background-color:#a8d3cc">Search</button>
+                                            </div>
+                                            <!--end of col-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--end of col-->
+                            </div>
                     <div class="form-group">
                         <label for="Email1">Email address</label>
                         <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Enter email">
