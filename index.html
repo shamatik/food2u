@@ -1,28 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script src="assets/javascript/logic.js"></script>
-
-    <title>Food2u</title>
+    <title>Food2U</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/style/style.css">
 </head>
-
 <body>
-    <h1>Hello World</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <span class="navbar-brand" href="#">Food2U</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+                </div>
+            <div id="loger">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="email" placeholder="Username" id="usrNameP">
+                    <input class="form-control mr-sm-2" type="password" placeholder="Password" id="usrPassP">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 767px;">
+        <div class="row" id="topContainer">
+            <div class="col-md-8 offset-md-2" id="alertRow">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+            </div>
+            <div class="col-md-8 offset-md-2" id="topRow" >
+                <h1 class="marginTop">Food2U Ingridient List Manager</h1>
+                <p class="lead">Create your user or search for recipies!</p>
+                <form style="text-align:left;">
+                    <div class="form-group">
+                        <label for="Email1">Email address</label>
+                        <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                            <label for="userName">Username</label>
+                            <input type="text" class="form-control" id="newUser"  placeholder="Enter a Username">
+                        </div>
+                    <div class="form-group">
+                        <label for="newPass">Password</label>
+                        <input type="password" class="form-control" id="newPass" placeholder="Password">
+                    </div>
+                    
+                    <div style="text-align:center;">
+                        <button type="submit" class="btn btn-primary marginBottom" id="createUser">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="col-md-10 offset-md-1" id="topRow">
+                <h1 class="marginTop">Welcome, Plese Select an option:</h1>
+                <div class="row">
+                    <div class="col-md-4 offset-md-2">
+                        <img src="./assets/images/piedra.png" >
+
+                    </div>
+
+                </div>
+            </div> -->
+        </div>
+    </div>
+    
+    <script src="./assets/javascript/logic.js"></script>
 </body>
-
 </html>
