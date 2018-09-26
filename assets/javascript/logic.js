@@ -178,7 +178,61 @@ var food2U = {
         
         var target = $("#topRow");
         target.empty();
-        target.attr("class","col-md-8 offset-md-2");
+        target.attr("class","col-md-10 offset-md-1");
+        var gralForm = $("form");
+        gralForm.attr("style","text-align:left;");
+        var divSearch = $("<div>");
+        divSearch.attr("class","ow justify-content-center");
+        divSearch.attr("id", "searchvar");
+        
+        //         <form style="text-align:left;">
+        //             <!-- search var -->     
+        //             <div id="searchvar" class="row justify-content-center" >
+        //                         <div class="col-12 col-md-10 col-lg-8">
+        //                             <form class="card card-sm">
+        //                                 <div class="card-body row no-gutters align-items-center">
+        //                                     <div class="col-auto">
+        //                                         <i class="fas fa-search h4 text-body"></i>
+        //                                     </div>
+        //                                     <!--end of col-->
+        //                                     <div class="col">
+        //                                         <input id="search" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for recipes">
+        //                                     </div>
+        //                                     <!--end of col-->
+        //                                     <div class="col-auto">
+        //                                         <button class="btn btn-lg btn-success" type="submit" style="background-color:#a8d3cc">Search</button>
+        //                                     </div>
+        //                                     <!--end of col-->
+        //                                 </div>
+        //                             </form>
+                                             
+        //                         </div>
+
+        //                         <!--end of col-->
+        //                     </div>
+                          
+        //             <div class="form-group">
+        //                 <label style="margin-left: 65%" for="Email1">Email address</label>
+        //                 <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Enter email">
+        //             </div>
+        //             <div class="form-group">
+        //                     <label style="margin-left: 65%" for="userName">Username</label>
+        //                     <input type="text" class="form-control" id="newUser"  placeholder="Enter a Username">
+        //                 </div>
+        //             <div class="form-group">
+        //                 <label style="margin-left: 65%" for="newPass">Password</label>
+        //                 <input type="password" class="form-control" id="newPass" placeholder="Password">
+        //             </div>
+                    
+        //             <div style="text-align:center;">
+        //                 <button type="submit" class="btn btn-primary marginBottom" id="createUser">Submit</button>
+        //             </div>
+                  
+        //                     <img class="logo" src="./assets/images/lista1.png" alt="Your Image" id="Lista-1">
+                        
+        //         </form>
+        //     </div>
+        
         var title = $("<h1>");
         title.attr("class","marginTop");
         title.text("Food2U Ingridient List Manager");
