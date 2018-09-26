@@ -106,11 +106,26 @@ var food2U = {
     "logStatusRev": function () {
         var localusr = localStorage.getItem("user2U");
         console.log(localusr);
+        
         if (localusr) {
             console.log("logged");
-            food2U.logStatus = true;
-            food2U.actualUser = localusr;
-
+            dataB.ref("users").once("value").then(function (childSnapshot) {
+                var newArr = [];
+                result = childSnapshot.val();
+                //console.log(result);
+                newArr = Object.getOwnPropertyNames(childSnapshot.val());
+                $(newArr).each(function (index, element) {
+                    //console.log(result[element].userName);
+                    if (localusr == result[element].userName) {
+                        food2U.logStatus = true;
+                        food2U.actualUser = result[element];
+                        
+                    }
+                });
+            }, function (errorObject) {
+                console.log("Errors handled: " + errorObject.code);
+            });
+            
         } else {
             console.log("not logged");
         }
@@ -120,7 +135,7 @@ var food2U = {
             $(this.actualUsers).each(function (index, element) {
                 if (usr == element.userName && password == element.pass) {
                     food2U.logStatus = true;
-                    food2U.actualUser = usr;
+                    food2U.actualUser = element;
                     localStorage.setItem("user2U", usr);
 
                 }
@@ -179,25 +194,63 @@ var food2U = {
 
         var target = $("#topRow");
         target.empty();
-        target.attr("class", "col-md-8 offset-md-2");
-
+        target.attr("class","col-md-10 offset-md-1");
+        
         var title = $("<h1>");
         title.attr("class", "marginTop");
-        title.text("Food2U Ingridient List Manager");
+        title.text("Food2U Ingredient List Manager");
         target.append(title);
 
         var plead = $("<p>");
         plead.attr("class", "lead");
         plead.text("Create your user or search for recipies!");
         target.append(plead);
+        
+        
+        var gralForm = $("<form>");
+        gralForm.attr("style","text-align:left;");
 
-        var areaF = $("<form>");
-        areaF.attr("style", "text-align:left;");
+        var divSearch = $("<div>");
+        divSearch.attr("class","row justify-content-center");
+        divSearch.attr("id", "searchvar");
+
+        var divcol12 = $("<div>");
+        divcol12.attr("class","col-12 col-md-10 col-lg-8");
+        
+        var divCardBody = $("<div>");
+        divCardBody.attr("class","card-body row no-gutters align-items-center");
+        var divSearchBar = $("<div>");
+        divSearchBar.attr("class","col");
+        var inputSearch = $("<input>");
+        inputSearch.attr("class","form-control form-control-lg form-control-borderless");
+        inputSearch.attr("id","search");
+        inputSearch.attr("type","search");
+        inputSearch.attr("placeholder","Search for recipes");
+        divSearchBar.append(inputSearch);
+
+        var divSubBtn = $("<div>");
+        divSubBtn.attr("class","col-auto");
+        var subBtn = $("<button>");
+        subBtn.attr("class","btn btn-lg btn-success");
+        subBtn.attr("type","submit");
+        subBtn.attr("id","searchBtn");
+        subBtn.attr("style","background-color:#a8d3cc");
+        subBtn.text("Search");
+        divSubBtn.append(subBtn);
+        
+        divCardBody.append(divSearchBar);
+        divCardBody.append(divSubBtn);
+        
+        divcol12.append(divCardBody);
+        divSearch.append(divcol12);
+        gralForm.append(divSearch);
+        target.append(gralForm);
 
         var div1 = $("<div>");
         div1.attr("class", "form-group");
 
         var label1 = $("<label>");
+        label1.attr("style", "margin-left: 65%");
         label1.attr("for", "Email1");
         label1.text("Email address");
 
@@ -210,12 +263,13 @@ var food2U = {
 
         div1.append(label1);
         div1.append(input1);
-        areaF.append(div1);
+        target.append(div1);
 
         var div2 = $("<div>");
         div2.attr("class", "form-group");
 
         var label2 = $("<label>");
+        label2.attr("style", "margin-left: 65%");
         label2.attr("for", "userName");
         label2.text("Username");
 
@@ -227,12 +281,13 @@ var food2U = {
 
         div2.append(label2);
         div2.append(input2);
-        areaF.append(div2);
+        target.append(div2);
 
         var div3 = $("<div>");
         div3.attr("class", "form-group");
 
         var label3 = $("<label>");
+        label3.attr("style", "margin-left: 65%");
         label3.attr("for", "newPass");
         label3.text("Password");
 
@@ -244,7 +299,7 @@ var food2U = {
 
         div3.append(label3);
         div3.append(input3);
-        areaF.append(div3);
+        target.append(div3);
 
         var div4 = $("<div>");
         div4.attr("style", "text-align:center;");
@@ -256,9 +311,16 @@ var food2U = {
         subBtn.text("Submit");
 
         div4.append(subBtn);
-        areaF.append(div4);
-        target.append(areaF);
+        target.append(div4);
 
+        var imgOptions = $("<img>");
+        imgOptions.attr("class","logo");
+        imgOptions.attr("src","./assets/images/lista1.png");
+        imgOptions.attr("alt","Your Image");
+        imgOptions.attr("id","Lista-1");
+
+        target.append(imgOptions);
+        
         $("#loginBtn").on("click", function () {
             event.preventDefault();
             $("#alertRow").empty();
@@ -269,7 +331,7 @@ var food2U = {
             //console.log(usr+" "+pass);
             food2U.login(usr, pass);
 
-        })
+        });
 
         $("#createUser").on("click", function () {
             event.preventDefault();
@@ -282,7 +344,19 @@ var food2U = {
             $("#newEmail").val("");
             //console.log(Newusr+" "+Newpass+" "+NewMail);
             food2U.userCreate(Newusr, Newpass, NewMail);
-        })
+        });
+
+        $("#searchBtn").on ("click",function(){
+            event.preventDefault();
+            var recipieSearch = $("#search").val().trim();
+            $("#search").val("");
+            if(recipieSearch){
+                console.log(recipieSearch);
+            } else{
+                console.log("escribe wey!");
+            }
+            
+        });
 
     },
     //Fin de sección
@@ -456,23 +530,35 @@ $(document).ready(function () {
         //console.log(usr+" "+pass);
         food2U.login(usr, pass);
 
-    })
+    });
 
     $("#createUser").on("click", function () {
         event.preventDefault();
         $("#alertRow").empty();
-        var Newusr = $("#newUser").val();
-        var Newpass = $("#newPass").val();
-        var NewMail = $("#newEmail").val();
+        var Newusr = $("#newUser").val().trim();
+        var Newpass = $("#newPass").val().trim();
+        var NewMail = $("#newEmail").val().trim();
         $("#newUser").val("");
         $("#newPass").val("");
         $("#newEmail").val("");
         //console.log(Newusr+" "+Newpass+" "+NewMail);
         food2U.userCreate(Newusr, Newpass, NewMail);
-    })
+    });
     // if(food2U.actualUser) {
     //food2U.dashboradDOM();
     // }
+    $("#searchBtn").on ("click",function(){
+        event.preventDefault();
+        var recipieSearch = $("#search").val().trim();
+        $("#search").val("");
+        if(recipieSearch){
+            console.log(recipieSearch);
+            //food2U.searchAPI(recipieSearch);
+        } else{
+            console.log("escribe wey!");
+        }
+        
+    });
 });
 //fin de document
 //-----------------------------------------------------------
