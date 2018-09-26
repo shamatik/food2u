@@ -1,0 +1,78 @@
+/* Sección de Edgar */
+
+body {
+    background-image: url("../images/cocina.gif");
+    background-repeat: repeat;
+    background-size: auto;
+}
+#bottomnav {
+    margin-bottom: 0;
+    height: 20px;
+    background-color: #d6ede9;
+}
+
+nav {
+    margin-bottom: 20px;
+    height: 1000;
+}
+
+.marginTop {
+    margin-top: 10px;
+}
+#topRow { 
+    text-align: center;
+    margin-top: 10px;
+    width: 200px;
+    min-height: 300px;
+    background: #ffdd62;
+    border-radius: 10px;
+
+}
+
+#newEmail{
+    width: 30%;
+    margin-left: 65%;
+}
+
+#newUser{
+    width: 30%;
+    margin-left: 65%;
+}
+
+#newPass{
+    width: 30%;
+    margin-left: 65%;
+}
+
+.btn{
+    background-color: #a8d3cc;
+    
+}
+#createUser{
+    margin-left: 65%;
+}
+
+.marginBottom {
+    margin-bottom: 10px;
+}
+label {
+    margin:0;
+}
+#Lista-1{
+    float: left;
+}
+
+.navbar {
+    height: 150px; 
+
+}
+
+.logo {
+  height: 130px;
+  margin-left: 40%;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/*Fin Sección de Edgar */
