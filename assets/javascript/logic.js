@@ -287,13 +287,18 @@ var food2U = {
     },
     //Fin de sección
 
-
+    //ejemplo
     "propiedadGenerica1": "",
     "metodoGenerico": function() {
 
     },
 
     //recipe search page section
+
+    //search object de la API--USEN ESTE OBJECT PARA HACER PRUEBAS Y NO CAGARLA CON LOS REQUESTS
+    "searchObject": "",
+
+    //ajax request que actualiza nuestro searchObject con el request
     "searchAPI": function(search) {
         $.ajax({
             url: "https://api.edamam.com/search",
@@ -302,49 +307,51 @@ var food2U = {
             dataType: 'jsonp',
             data: { "q": search, "app_id": "2f70782b", "app_key": "f2a56b8d890b625227f5cdcd6bf5780b", "from": "0", "to": "6" }
         }).then(function (response) {
-            console.log(response);
-
-            var queryObj = response.hits;
-
-            $("#topContainer").empty();
-
-            food2U.createResultsPageContainers();
-
-            $(queryObj).each(function (index, element) {
-                
-                var image = element.recipe.image;
-                var name = element.recipe.label;
-                
-                var index = index;
-
-                food2U.createResultsPageDivs(name, image, index);
-            });
+            console.log(response.hits);
+            searchObject = response.hits;
         });
     },
 
+    //esto saca la info que se necesita desplegar
+    "APIobject": function() {
+        console.log(searchObject);
+
+        $("#topContainer").empty();
+
+        food2U.createResultsPageContainers();
+
+        $(searchObject).each(function (index, element) {
+            
+            var image = element.recipe.image;
+            var name = element.recipe.label;
+            
+            // var index = index;
+
+            food2U.createResultsPageDivs(name, image, index);
+        });
+    },
+
+    //en este se agregan los resultados y se organizan de acuerdo con los divs
     "createResultsPageDivs": function(main, pic, index) {
-
-//         <div class="card" style="width: 18rem;">
-//              <img class="card-img-top" src="..." alt="Card image cap">
-//                  <div class="card-body">
-//                      <p class="card-text">Some quick example text to build on the card title and make up the                                 bulk of the card's content.</p>
-//                  </div>
-//         </div>
-
-
-        console.log(index);
 
         var div = $("<div>");
         div.attr("class", "card");
         div.attr("style", "width: 300px;");
 
+        // var blackBars = $("<div>");
+        // blackBars.attr("style", "height: 300px;");
+        // blackBars.attr("style", "width: 300px;");
+        // blackBars.attr("class", "black");
+
         var img = $("<img>");
 
         img.attr("src", pic);
-        img.attr("style", "height: 300px;");
-        img.attr("style", "width: 300px;");
+        img.attr("style", "height: auto;");
+        img.attr("style", "width: auto;");
         img.attr("style", "border-width: 1px;");
         img.attr("class", "card-img-top");
+        img.attr("class", "rounded");
+        img.attr("id", index);
 
         var divCard = $("<div>");
         divCard.attr("class", "card-body");
@@ -359,6 +366,8 @@ var food2U = {
         
         div.append(divCard);
 
+        // blackBars.append(img);
+
         div.append(img);
 
         if (index <= 2) {
@@ -367,10 +376,36 @@ var food2U = {
             $("#rightCol").append(div);
         }
 
-        // div.attr("id", "topRow");
-
+        food2U.createClickEvents();
     },
 
+    "createClickEvents": function () {
+        $("#0").on("click", function () {
+            console.log(this);
+        });
+
+        $("#1").on("click", function () {
+            console.log(this);
+        });
+
+        $("#2").on("click", function () {
+            console.log(this);
+        });
+
+        $("#3").on("click", function () {
+            console.log(this);
+        });
+
+        $("#4").on("click", function () {
+            console.log(this);
+        });
+
+        $("#5").on("click", function () {
+            console.log(this);
+        });
+    },
+
+    //este crea los container divs, rows y columns
     "createResultsPageContainers": function() {
         var divContainer = $("<div>");
         divContainer.attr("class", "container");
