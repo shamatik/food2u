@@ -59,7 +59,12 @@ label {
     margin:0;
 }
 #Lista-1{
-    float: left;
+    float: right;
+    margin-right: 550px;
+    width: 40%;
+    height: 40%;
+    margin-top: -260px;
+  
 }
 
 .navbar {
