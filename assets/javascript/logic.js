@@ -588,9 +588,31 @@ var food2U = {
             $(ul).append(li);
         });
 
+        console.log(food2U.logStatus);
+
         $("#rightCol").append(ul);
-        $("#leftCol").append(prevElement);
         $("#leftCol").prepend(h2);
+        $("#leftCol").append(prevElement);
+
+        if (food2U = true) {
+            var btn = $("<button>");
+            
+            btn.attr("type", "button");
+            btn.attr("class", "btn btn-info customBut");
+            btn.attr("id", "add");
+            btn.text("Add ingredients to list");
+            
+            $("#leftCol").append(btn);
+        } else {
+            var btn = $("<button>");
+
+            btn.attr("type", "button");
+            btn.attr("class", "btn btn-info customBut");
+            btn.attr("id", "create");
+            btn.text("Create username");
+
+            $("#leftCol").append(btn);
+        }
 
         // console.log(recipe);
         
