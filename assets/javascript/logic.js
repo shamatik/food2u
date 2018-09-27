@@ -352,6 +352,7 @@ var food2U = {
             $("#search").val("");
             if(recipieSearch){
                 console.log(recipieSearch);
+
             } else{
                 console.log("escribe wey!");
             }
@@ -589,6 +590,14 @@ var food2U = {
 
         // console.log(recipe);
         
+    },
+    "addlist": function() {
+        if(food2U.logStatus){
+            dataB.ref("users/"+food2U.actualUser+"/lists/").set(aae);
+            $(arra).each(function(i,ele){
+                dataB.ref("users/edgar/lists/"+aae+"/"+i+"/").set(ele);
+            });
+        }
     }
 
 
@@ -650,5 +659,3 @@ $(document).ready(function () {
 });
 //fin de document
 //-----------------------------------------------------------
-
-
