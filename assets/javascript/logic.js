@@ -401,8 +401,12 @@ var food2U = {
             
             // var index = index;
 
+            // console.log(index);
+
             food2U.createResultsPageDivs(name, image, index);
         });
+
+        food2U.createClickEvents();
     },
 
     //en este se agregan los resultados y se organizan de acuerdo con los divs
@@ -450,7 +454,6 @@ var food2U = {
             $("#rightCol").append(div);
         }
 
-        food2U.createClickEvents();
     },
 
     "createClickEvents": function () {
