@@ -456,29 +456,42 @@ var food2U = {
 
     },
 
+    //este le asigna click events a cada search result
     "createClickEvents": function () {
         $("#0").on("click", function () {
             console.log(this);
+            var fullElem = this;
+            food2U.recipePageDisplay(fullElem);
         });
 
         $("#1").on("click", function () {
             console.log(this);
+            var fullElem = this;
+            food2U.recipePageDisplay(fullElem);
         });
 
         $("#2").on("click", function () {
             console.log(this);
+            var fullElem = this;
+            food2U.recipePageDisplay(fullElem);
         });
 
         $("#3").on("click", function () {
             console.log(this);
+            var fullElem = this;
+            food2U.recipePageDisplay(fullElem);
         });
 
         $("#4").on("click", function () {
             console.log(this);
+            var fullElem = this;
+            food2U.recipePageDisplay(fullElem);
         });
 
         $("#5").on("click", function () {
             console.log(this);
+            var fullElem = this;
+            food2U.recipePageDisplay(fullElem);
         });
     },
 
@@ -505,7 +518,49 @@ var food2U = {
         divContainer.append(divRow);
 
         $("#topContainer").append(divContainer);
+    },
+
+    "createRecipePageContainers": function() {
+        var divContainer = $("<div>");
+        divContainer.attr("class", "container background");
+
+        var divRow = $("<div>");
+        divRow.attr("class", "row");
+
+        var divCol1 = $("<div>");
+        divCol1.attr("class", "offset-lg-2 col-lg-4");
+        divCol1.attr("id", "leftCol");
+
+        var divCol2 = $("<div>");
+        divCol2.attr("class", "col-lg-4");
+        divCol2.attr("id", "rightCol");
+
+        divRow.append(divCol1);
+        divRow.append(divCol2);
+
+        divContainer.append(divRow);
+
+        $("#topContainer").append(divContainer);
+    },
+
+    //method to display recipe on recipe page
+    "recipePageDisplay": function(prevElement) {
+        $("#topContainer").empty();
+
+        food2U.createRecipePageContainers();
+
+        var id = prevElement.id;
+
+        var elemFullObj = searchObject[id];
+
+        var recipe = elemFullObj.recipe;
+
+        var ingredients = recipe.ingredientLines;
+
+        $("#rightCol").append(ingredients);
+        
     }
+
 
 };
 
