@@ -140,7 +140,7 @@ var food2U = {
 
                 }
             });
-            if (food2U.logStatus) {
+            if (food2U.logStatus = true) {
                 console.log("you're logged in");
                 //food2U.dashboradDOM();
             } else {
@@ -594,7 +594,7 @@ var food2U = {
         $("#leftCol").prepend(h2);
         $("#leftCol").append(prevElement);
 
-        if (food2U = true) {
+        if (food2U.logStatus) {
             var btn = $("<button>");
             
             btn.attr("type", "button");
