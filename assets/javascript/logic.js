@@ -140,7 +140,7 @@ var food2U = {
 
                 }
             });
-            if (food2U.logStatus = true) {
+            if (food2U.logStatus) {
                 console.log("you're logged in");
                 //food2U.dashboradDOM();
             } else {
