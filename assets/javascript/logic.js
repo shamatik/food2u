@@ -586,7 +586,6 @@ var food2U = {
         $("#rightCol").append(ul);
         $("#leftCol").append(prevElement);
         $("#leftCol").prepend(h2);
-        $("#leftCol").app
 
         // console.log(recipe);
         
