@@ -99,3 +99,7 @@ label {
 .background{
     background: #ffdd62;
 }
+
+.customBut{
+    margin: 3px;
+}

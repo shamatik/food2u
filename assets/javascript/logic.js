@@ -371,6 +371,7 @@ var food2U = {
 
     //search object de la API--USEN ESTE OBJECT PARA HACER PRUEBAS Y NO CAGARLA CON LOS REQUESTS
     "searchObject": "",
+    "objectIngredients": "",
 
     //ajax request que actualiza nuestro searchObject con el request
     "searchAPI": function(search) {
@@ -555,7 +556,11 @@ var food2U = {
 
         var recipe = elemFullObj.recipe;
 
-        var ingredients = recipe.ingredientLines;
+        // var ingredients = recipe.ingredientLines;
+
+        objectIngredients = recipe.ingredientLines;
+
+        console.log(objectIngredients);
 
         var name = recipe.label;
 
@@ -574,7 +579,7 @@ var food2U = {
         $(ul).prepend(br);
         $(ul).prepend(br1);
 
-        $(ingredients).each(function (index, element) {
+        $(objectIngredients).each(function (index, element) {
 
             var li = $("<li>");
 
@@ -583,9 +588,31 @@ var food2U = {
             $(ul).append(li);
         });
 
+        console.log(food2U.logStatus);
+
         $("#rightCol").append(ul);
-        $("#leftCol").append(prevElement);
         $("#leftCol").prepend(h2);
+        $("#leftCol").append(prevElement);
+
+        if (food2U.logStatus) {
+            var btn = $("<button>");
+            
+            btn.attr("type", "button");
+            btn.attr("class", "btn btn-info customBut");
+            btn.attr("id", "add");
+            btn.text("Add ingredients to list");
+            
+            $("#leftCol").append(btn);
+        } else {
+            var btn = $("<button>");
+
+            btn.attr("type", "button");
+            btn.attr("class", "btn btn-info customBut");
+            btn.attr("id", "create");
+            btn.text("Create username");
+
+            $("#leftCol").append(btn);
+        }
 
         // console.log(recipe);
         
