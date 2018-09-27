@@ -528,11 +528,11 @@ var food2U = {
         divRow.attr("class", "row");
 
         var divCol1 = $("<div>");
-        divCol1.attr("class", "offset-lg-2 col-lg-4");
+        divCol1.attr("class", "offset-lg-1 col-lg-4 text-center");
         divCol1.attr("id", "leftCol");
 
         var divCol2 = $("<div>");
-        divCol2.attr("class", "col-lg-4");
+        divCol2.attr("class", "offset-lg-1 col-lg-4");
         divCol2.attr("id", "rightCol");
 
         divRow.append(divCol1);
@@ -557,7 +557,38 @@ var food2U = {
 
         var ingredients = recipe.ingredientLines;
 
-        $("#rightCol").append(ingredients);
+        var name = recipe.label;
+
+        var full = recipe.url;
+
+        var h2 = $("<h2>");
+
+        h2.text(name);
+
+        var ul = $("<ul>");
+
+        var br = $("<br>");
+
+        var br1 = $("<br>");
+
+        $(ul).prepend(br);
+        $(ul).prepend(br1);
+
+        $(ingredients).each(function (index, element) {
+
+            var li = $("<li>");
+
+            $(li).text(element);
+
+            $(ul).append(li);
+        });
+
+        $("#rightCol").append(ul);
+        $("#leftCol").append(prevElement);
+        $("#leftCol").prepend(h2);
+        $("#leftCol").app
+
+        // console.log(recipe);
         
     }
 
