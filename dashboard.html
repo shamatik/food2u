@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Food2U</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/style/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #a8d3cc">
+        <img class="logo" src="./assets/images/mainlogo.png" alt="Your Image" id="bio-image">
+        <span class="navbar-brand" href="#"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav id="bottomnav" class="navbar fixed-bottom">
+                <a class="navbar-brand" href="#"></a>
+              </nav>
+        
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div class="navbar-nav mr-auto py-100">
+                </div>
+            <div id="loger">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="email" placeholder="Username" id="usrNameP">
+                    <input class="form-control mr-sm-2" type="password" placeholder="Password" id="usrPassP">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 767px;">
+        <div class="row" id="topContainer">
+            <div class="col-md-8 offset-md-2" id="alertRow">
+            </div>
+            <div class="col-md-12" id="topRow1" >
+                <div class="col-md-3 dashboardCont" id="suggestions">
+                    <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Recipe of the month!</h5>
+                                <hr>
+                                <p class="card-text ">The all awaited CHECK IT OUT!!!</p>
+                                <a href="#" class="btn btn-primary now">now!</a>
+                            </div>
+                        </div> 
+                </div>
+
+                <div class="col-md-3 dashboardCont" >
+                    <div class="card">
+                            <div class="card-body" id="fav">
+                                <h5 class="card-title">Favorite Recipes</h5>
+                                <hr>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Pozole</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Molletes</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Paella</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Huevos Revueltos</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Pozole</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Molletes</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Paella</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Huevos Revueltos</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Pozole</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Molletes</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Paella</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Huevos Revueltos</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Pozole</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Molletes</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Paella</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Huevos Revueltos</button>
+                            </div>
+                        </div> 
+                </div>
+
+                <div class="col-md-3 dashboardCont" id="lists">
+                    <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">List</h5>
+                                <hr>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block btn-success">Lista navidad</button>
+                                <br>
+                                <a href="#" class="btn btn-primary clear">Eliminar</a>
+                            </div>
+                        </div> 
+                </div>
+                
+            </div>       
+        </div>
+    </div>
+    
+    <script src="./assets/javascript/logic.js"></script>
+</body>
+</html>
