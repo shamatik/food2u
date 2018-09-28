@@ -402,9 +402,9 @@ var food2U = {
             var image = element.recipe.image;
             var name = element.recipe.label;
             
-            // var index = index;
+            //var index = index;
 
-            // console.log(index);
+            //console.log(index);
 
             food2U.createResultsPageDivs(name, image, index);
         });
@@ -458,6 +458,7 @@ var food2U = {
         }
 
     },
+    
 
     //este le asigna click events a cada search result
     "createClickEvents": function () {
