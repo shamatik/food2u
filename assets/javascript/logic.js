@@ -373,6 +373,7 @@ var food2U = {
     //search object de la API--USEN ESTE OBJECT PARA HACER PRUEBAS Y NO CAGARLA CON LOS REQUESTS
     "searchObject": "",
     "objectIngredients": "",
+    "recipeName":"",
 
     //ajax request que actualiza nuestro searchObject con el request
     "searchAPI": function(search) {
@@ -559,17 +560,17 @@ var food2U = {
 
         // var ingredients = recipe.ingredientLines;
 
-        objectIngredients = recipe.ingredientLines;
+        food2U.objectIngredients = recipe.ingredientLines;
 
-        console.log(objectIngredients);
+        console.log(food2U.objectIngredients);
 
-        var name = recipe.label;
+        food2U.recipeName = recipe.label;
 
         var full = recipe.url;
 
         var h2 = $("<h2>");
 
-        h2.text(name);
+        h2.text(food2U.recipeName);
 
         var ul = $("<ul>");
 
@@ -580,7 +581,7 @@ var food2U = {
         $(ul).prepend(br);
         $(ul).prepend(br1);
 
-        $(objectIngredients).each(function (index, element) {
+        $(food2U.objectIngredients).each(function (index, element) {
 
             var li = $("<li>");
 
@@ -602,8 +603,12 @@ var food2U = {
             btn.attr("class", "btn btn-info customBut");
             btn.attr("id", "add");
             btn.text("Add ingredients to list");
-            
             $("#leftCol").append(btn);
+
+            $("#add").on("click", function(){
+                food2U.addCompletelist();
+            });
+
         } else {
             var btn = $("<button>");
 
@@ -618,11 +623,13 @@ var food2U = {
         // console.log(recipe);
         
     },
-    "addlist": function() {
+    "addCompletelist": function() {
         if(food2U.logStatus){
-            dataB.ref("users/"+food2U.actualUser+"/lists/").set(aae);
-            $(arra).each(function(i,ele){
-                dataB.ref("users/edgar/lists/"+aae+"/"+i+"/").set(ele);
+            console.log(food2U.actualUser.userName);
+            console.log(food2U.recipeName);
+            //dataB.ref("users/"+food2U.actualUser.userName+"/lists/").set(food2U.recipeName);
+            $(food2U.objectIngredients).each(function(i,ele){
+                dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
         }
     }
