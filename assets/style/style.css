@@ -15,6 +15,14 @@ nav {
     margin-bottom: 20px;
     height: 1000;
 }
+@font-face {
+    font-family: myFirstFont;
+    src: url("../Font/Retrology\ DEMO.ttf");
+}
+
+.font{
+    font-family: myFirstFont;
+}
 
 .marginTop {
     margin-top: 10px;
@@ -24,7 +32,7 @@ nav {
     text-align: center;
     margin-top: 10px;
     width: 200px;
-    min-height: 300px;
+    
     background: #ffdd62;
     border-radius: 10px;
 
@@ -169,3 +177,15 @@ label {
     background: black;
 }
 
+<<<<<<< HEAD
+=======
+/* recipe page styles */
+
+.background{
+    background: #ffdd62;
+}
+
+.customBut{
+    margin: 3px;
+}
+>>>>>>> 6abe016e2a19ba9419d44df58a9b32c859c85ef3
