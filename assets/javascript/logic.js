@@ -633,6 +633,45 @@ var food2U = {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
         }
+    },
+
+    "checkoutPageDOM": function() {
+        $("#topContainer").empty();
+
+        food2U.createRecipePageContainers();
+
+        var name = food2U.recipeName;
+        var ingredients = food2U.objectIngredients;
+
+        var h2 = $("<h2>");
+
+        h2.text(name);
+
+        var ul = $("<ul>");
+
+        var br = $("<br>");
+
+        var br1 = $("<br>");
+
+        $(ul).prepend(br);
+        $(ul).prepend(br1);
+
+        $(ingredients).each(function (index, element) {
+
+            var li = $("<li>");
+
+            $(li).text(element);
+
+            $(ul).append(li);
+        });
+
+        $("#rightCol").prepend(h2);
+        $("#rightCol").append(ul);
+        // $("#leftCol").append();
+    },
+
+    "googleMapsEmbed": function() {
+
     }
 
 
