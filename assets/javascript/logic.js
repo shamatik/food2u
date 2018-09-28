@@ -524,7 +524,6 @@ var food2U = {
         $("#topContainer").append(divContainer);
     },
 
-<<<<<<< HEAD
     "dashboardDOMgen": function(){
     $("#topContainer").empty();
 
@@ -628,8 +627,7 @@ var food2U = {
         
 
 
-
-=======
+    },
     "createRecipePageContainers": function() {
         var divContainer = $("<div>");
         divContainer.attr("class", "container background");
@@ -739,7 +737,7 @@ var food2U = {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
         }
->>>>>>> 6abe016e2a19ba9419d44df58a9b32c859c85ef3
+
     }
 
 
