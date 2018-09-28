@@ -82,6 +82,7 @@ var food2U = {
                     pass: usrpass,
                     email: usremail,
                     lists: "",
+                    favoriteRecipie: "",
                     date: moment().format("DD-MM-YY")
                 });
                 localStorage.setItem("user2U", usrname);
