@@ -19,6 +19,7 @@ nav {
 .marginTop {
     margin-top: 10px;
 }
+
 #topRow { 
     text-align: center;
     margin-top: 10px;
@@ -81,6 +82,7 @@ label {
 }
 
 /*Fin Sección de Edgar */
+
 
 #topRow1 { 
     text-align: center;
@@ -152,5 +154,17 @@ label {
 
 .now{
     background-color:#ffdd62;
+}
+
+
+/* recipe search results page styles */
+
+.card {
+    background: #ffdd62;
+    margin-bottom: 7px;
+}
+
+.black {
+    background: black;
 }
 
