@@ -739,10 +739,52 @@ var food2U = {
             });
         }
 
+    }, 
+
+    "generateList": function() {
+        if (food2U.logStatus) {
+            var yourList = $("<h1 class='marginTop'>");
+            yourList.text("Your List");
+            var userRecipe = Object.getOwnPropertyNames(food2U.actualUser.lists);
+            var target =  $("#topRow");
+            target.append(yourList);
+            $(userRecipe).each(function (i, ele){
+                var recipeName = $("<h4>");
+                recipeName.attr("class","recipeName");
+                recipeName.text(ele);
+                target.append(recipeName);
+                console.log(food2U.actualUser.lists[ele]);
+                $(food2U.actualUser.lists[ele]).each(function (index, element){
+                    var ingredientDiv = $("<div class='custom-control custom-checkbox'>");
+                    var inputDiv = $('<input type="checkbox" class="custom-control-input" id="'+index+element+'" checked>');
+                    var labelIngredient = $('<label class="custom-control-label" for="'+index+element+'">');
+                    labelIngredient.text(element);
+                    ingredientDiv.append(inputDiv);
+                    ingredientDiv.append(labelIngredient);
+                    target.append(ingredientDiv);
+
+
+                });
+
+            });
+            
+            var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
+            buttonCheckout.text("Check Out");
+            target.append(buttonCheckout);
+
+
+            //aqui
+            //  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
+            
+
+        }
+
     }
 
 
 };
+
+ 
 
 
 
