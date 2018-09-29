@@ -135,26 +135,29 @@ var food2U = {
                         food2U.actualUser = result[element];
 
                     }
+                    
                 });
+                var navTarg = $("#navForm");
+                navTarg.empty();
+
+                var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+                navLogout.text("Logout");
+                navTarg.append(navLogout);
+
+                
+                $(document).delegate('#logoutBtn','click',function(){
+                    event.preventDefault();
+                    food2U.logout();
+                    
+                });
+
+                food2U.dashboardDOMgen();
+                food2U.welcome();
             }, function (errorObject) {
                 console.log("Errors handled: " + errorObject.code);
             });
 
-            var navTarg = $("#navForm");
-            navTarg.empty();
-
-            var navLogout = $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
-            navLogout.text("Logout");
-            navTarg.append(navLogout);
-
-
-            $(document).delegate('#logoutBtn', 'click', function () {
-                event.preventDefault();
-                food2U.logout();
-
-            });
-
-            food2U.dashboardDOMgen();
+            
 
         } else {
             console.log("not logged");
@@ -427,7 +430,9 @@ var food2U = {
         //console.log(searchObject);
 
         $("#topContainer").empty();
-
+        if(food2U.logStatus) {
+            this.generateDOMsearchAlert();
+        }
         food2U.createResultsPageContainers();
 
         $(searchObject).each(function (index, element) {
@@ -553,10 +558,13 @@ var food2U = {
         this.objectIngredients = [];
         this.recipeName = "";
         $("#topContainer").empty();
+        this.generateDOMsearchAlert();
 
         var topRow1 = $("<div>");
         topRow1.attr("class", "col-md-12");
         topRow1.attr("id", "topRow");
+
+        
 
         var suggestions = $("<div>");
         suggestions.attr("class", "col-md-3 dashboardCont");
@@ -613,6 +621,23 @@ var food2U = {
         var hr = $("<hr>");
         cardBody1.append(hr);
 
+        var FAvArr = Object.getOwnPropertyNames(food2U.actualUser.favoriteRecipie);
+        if(FAvArr.length > 0) {
+            $(FAvArr).each(function(i,ele){
+                var buttonL = $('<button type="button" class="btn btn-secondary btn-lg btn-block" style="font-size:13px;">');
+                buttonL.attr("id",i+"fav");
+                buttonL.text(ele);
+                cardBody1.append(buttonL);
+                $(document).delegate('#'+i+'fav','click',function(){
+                    var favRec = event.target.innerHTML;
+                    food2U.searchAPI(favRec);
+                });
+            });
+        } else {
+            var buttonL = $('<button type="button" class="btn btn-secondary btn-lg btn-block">');
+            buttonL.text("There are no Favs");
+            cardBody1.append(buttonL);
+        }
         // var cardBody1text = $("<p>");
         // cardBody1text.attr("class","card-text");
         // cardBody1text.text("The all awaited CHECK IT OUT!!!");
@@ -646,9 +671,14 @@ var food2U = {
         cardBody1.append(hr);
 
         var cardBody1btn = $("<a>");
-        cardBody1btn.attr("class", "btn btn-primary clear");
-        cardBody1btn.text("Eliminar");
+        cardBody1btn.attr("class","btn btn-light clear");
+        cardBody1btn.text("Go To List");
+        cardBody1btn.attr("id","goListBtn");
         cardBody1.append(cardBody1btn);
+        $(document).delegate('#goListBtn','click',function(){
+            event.preventDefault();
+            food2U.generateList();
+        });
 
         $("#topContainer").append(topRow1);
 
@@ -680,7 +710,9 @@ var food2U = {
     //method to display recipe on recipe page
     "recipePageDisplay": function (prevElement) {
         $("#topContainer").empty();
-
+        if(food2U.logStatus) {
+            this.generateDOMsearchAlert();
+        }
         food2U.createRecipePageContainers();
 
         var id = prevElement.id;
@@ -931,8 +963,53 @@ var food2U = {
 
     },
 
-    "generateDOMsearchAlert": function () {
+    "generateDOMsearchAlert": function(){
+        var target = $("#topContainer");
+        
+        var homDiv = $('<div class="col-md-4" id="homeDom">');
+        var homBtn = $('<button id="homeBtn" type="button" class="btn btn-light">');
+        homBtn.text("Home");
+        homDiv.append(homBtn);
+        target.append(homDiv);
 
+        var serchdiv = $('<div class="col-md-4 offset-md-4" id="searchDiv">');
+        var inputGr = $('<div class="input-group mb-3">');
+        var inputSearch = $('<input type="text" id="search" class="form-control" placeholder="Search for recipes">');
+        var appendInput = $('<div class="input-group-append">');
+        var buttonSer = $('<button class="btn btn-outline-secondary" type="button" id="searchBtn">');
+        buttonSer.text("Search");
+        appendInput.append(buttonSer);
+        inputGr.append(inputSearch);
+        inputGr.append(appendInput);
+        serchdiv.append(inputGr);
+        target.append(serchdiv);
+
+        var alertDiv =$('<div class="col-md-8 offset-md-2" id="alertRow">');
+        target.append(alertDiv);
+        $(document).delegate('#searchBtn','click',function(){
+            event.preventDefault();
+            var recipieSearch = $("#search").val().trim();
+            $("#search").val("");
+            if (recipieSearch) {
+                console.log(recipieSearch);
+                food2U.searchAPI(recipieSearch);
+            } else {
+                console.log("escribe wey!");
+            }
+        });
+
+        $(document).delegate('#homeBtn','click',function(){
+            event.preventDefault();
+            food2U.dashboardDOMgen();
+        });
+    },
+
+    "welcome":function() {
+        var title = $("<h1>");
+        //console.log(food2U.actualUser);
+        //console.log("Hi "+food2U.actualUser.userName+" welcome Back!");
+        title.html("Hi "+food2U.actualUser.userName+" welcome Back!");
+        $("#topRow").prepend(title);
     }
 
 
