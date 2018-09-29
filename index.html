@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYPV7_SOPv-3r1f5BPk4F-tU8PIj3Xq9c"></script>
+    <!-- <script type="text/javascript" src="assets/javascript/jquery.googlemap.js"></script> -->
     <link rel="stylesheet" type="text/css" href="./assets/style/style.css">
 </head>
 <body>
@@ -30,7 +32,7 @@
                 <div class="navbar-nav mr-auto py-100">
                 </div>
             <div id="loger">
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0" id="navForm">
                     <input class="form-control mr-sm-2" type="email" placeholder="Username" id="usrNameP">
                     <input class="form-control mr-sm-2" type="password" placeholder="Password" id="usrPassP">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
@@ -40,14 +42,23 @@
     </nav>
     <div class="container" style="min-height: 767px;">
         <div class="row" id="topContainer">
-            <div class="col-md-8 offset-md-2" id="alertRow">
+
+             <div class="col-md-8 offset-md-2" id="alertRow">
 
             </div>
-            <div class="col-md-10 offset-md-1" id="topRow" >
-                <h1 class="marginTop">Food2U Ingredient List Manager</h1>
+            <div class="col-md-10 offset-md-1" id="topRow" > 
+                    <!-- <h1 class="marginTop">Your List</h1>
+                    <h4 class="recipeName"> Name </h4>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+                        <label class="custom-control-label" for="defaultChecked2">Ingrediente 1 </label>
+                    </div> -->
+
+                            
+                 <h1 class="marginTop">Ingredient List Manager</h1>
                 <p class="lead">Create an account or search for recipes!</p>
                 <form style="text-align:left;">
-                    <!-- search var -->     
+                      
                     <div id="searchvar" class="row justify-content-center" >
 
                         <div class="col-12 col-md-10 col-lg-8">
@@ -56,47 +67,43 @@
                                     <div class="col">
                                         <input id="search" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for recipes">
                                     </div>
-                                    <!--end of col-->
+                                    
                                     <div class="col-auto">
                                         <button id="searchBtn" class="btn btn-lg btn-success" type="submit" style="background-color:#a8d3cc">Search</button>
                                     </div>
-                                    <!--end of col-->
+                                    
                                 </div>
                             </form>
                         </div>
                     </div>
+
+                    <br>
                           
                     <div class="form-group">
-                        <label style="margin-left: 65%" for="Email1">Email address</label>
-                        <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="Email1">Email address</label>
+                        <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Enter an email address">
                     </div>
                     <div class="form-group">
-                            <label style="margin-left: 65%" for="userName">Username</label>
-                            <input type="text" class="form-control" id="newUser"  placeholder="Enter a Username">
+                            <label for="userName">Username</label>
+                            <input type="text" class="form-control" id="newUser"  placeholder="Enter a username">
                         </div>
                     <div class="form-group">
-                        <label style="margin-left: 65%" for="newPass">Password</label>
-                        <input type="password" class="form-control" id="newPass" placeholder="Password">
+                        <label for="newPass">Password</label>
+                        <input type="password" class="form-control" id="newPass" placeholder="Enter a password">
                     </div>
                     
                     <div style="text-align:center;">
                         <button type="submit" class="btn btn-primary marginBottom" id="createUser">Submit</button>
                     </div>
                   
-                            <img class="logo" src="./assets/images/lista1.png" alt="Your Image" id="Lista-1">
                         
                 </form>
-            </div>
-            <!-- <div class="col-md-10 offset-md-1" id="topRow">
-                <h1 class="marginTop">Welcome, Plese Select an option:</h1>
-                <div class="row">
-                    <div class="col-md-4 offset-md-2">
-                        <img src="./assets/images/piedra.png" >
-
-                    </div>
-
+            </div>  
+            
+                    </div> 
+ 
                 </div>
-            </div> -->
+            </div> 
         </div>
     </div>
     

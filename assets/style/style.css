@@ -32,34 +32,17 @@ nav {
     text-align: center;
     margin-top: 10px;
     width: 200px;
-    
+    margin-bottom: 30px;
     background: #ffdd62;
     border-radius: 10px;
 
-}
-
-#newEmail{
-    width: 30%;
-    margin-left: 65%;
-}
-
-#newUser{
-    width: 30%;
-    margin-left: 65%;
-}
-
-#newPass{
-    width: 30%;
-    margin-left: 65%;
 }
 
 .btn{
     background-color: #a8d3cc;
     
 }
-#createUser{
-    margin-left: 65%;
-}
+
 
 .marginBottom {
     margin-bottom: 10px;
@@ -111,8 +94,9 @@ label {
     padding-top: 1.5%;
     padding-bottom: 1.5%;
     margin-left:6%;
-    margin-top:5%;
+    margin-top:1%;
     margin-bottom:5%;
+    
 }
 
  #fav{
@@ -158,7 +142,7 @@ label {
 }
 
 .clear{
-    background-color: #fc7859;
+    background-color: #95fc59;
 }
 
 .now{
@@ -185,4 +169,16 @@ label {
 
 .customBut{
     margin: 3px;
+}
+
+
+/* list page styles */
+
+.no-align{
+    margin-bottom: 15px;
+    
+}
+
+.offset-lg-4 {
+    margin-left: 37.333333%;
 }
