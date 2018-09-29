@@ -421,6 +421,7 @@ var food2U = {
 
     //ajax request que actualiza nuestro searchObject con el request
     "searchAPI": function (search) {
+        food2U.searchObject="";
         $.ajax({
             url: "https://api.edamam.com/search",
             method: "GET",
@@ -429,7 +430,7 @@ var food2U = {
             data: { "q": search, "app_id": "2f70782b", "app_key": "f2a56b8d890b625227f5cdcd6bf5780b", "from": "0", "to": "6" }
         }).then(function (response) {
             console.log(response.hits);
-            searchObject = response.hits;
+            food2U.searchObject = response.hits;
             food2U.APIobject();
         });
     },
@@ -444,7 +445,7 @@ var food2U = {
         }
         food2U.createResultsPageContainers();
 
-        $(searchObject).each(function (index, element) {
+        $(food2U.searchObject).each(function (index, element) {
 
             var image = element.recipe.image;
             var name = element.recipe.label;
@@ -468,6 +469,7 @@ var food2U = {
         img.attr("style", "height: auto;");
         img.attr("style", "width: auto;");
         img.attr("style", "border-width: 1px;");
+        img.attr("style", "cursor: pointer;");
         img.attr("class", "card-img-top");
         img.attr("class", "rounded");
         img.attr("id", index);
@@ -599,11 +601,13 @@ var food2U = {
 
         var cardBody1text = $("<p>");
         cardBody1text.attr("class", "card-text");
-        cardBody1text.text("The all awaited CHECK IT OUT!!!");
+        cardBody1text.text("Check it out!");
         cardBody1.append(cardBody1text);
 
         var cardBody1btn = $("<a>");
         cardBody1btn.attr("class", "btn btn-primary now");
+        cardBody1btn.attr("href", "http://www.seriouseats.com/recipes/2016/03/falafel-black-olive-harissa-vegan-experience-recipe.html");
+        cardBody1btn.attr("target","_blank");
         cardBody1btn.text("now!");
         cardBody1.append(cardBody1btn);
 
@@ -844,7 +848,8 @@ var food2U = {
             var btn = $("#favRec");
             btn.addClass("disabled");
             btn.text("Recipe added");
-            food2U.actualUser.favoriteRecipie[food2U.recipeName] = food2U.recipeName;
+            var addedRec = food2U.recipeName;
+            food2U.actualUser.favoriteRecipie[addedRec] = addedRec;
         }
 
     },
