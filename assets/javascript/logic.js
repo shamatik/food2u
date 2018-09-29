@@ -242,6 +242,7 @@ var food2U = {
         
         var topC = $("#topContainer");
         topC.empty();
+
         var target = $("<div id='topRow'>");
         target.attr("class", "col-md-10 offset-md-1");
 
@@ -290,23 +291,26 @@ var food2U = {
         divCardBody.append(divSearchBar);
         divCardBody.append(divSubBtn);
 
+        var br = $("<br>");
+
         divcol12.append(divCardBody);
         divSearch.append(divcol12);
         gralForm.append(divSearch);
+        gralForm.append(br);
         target.append(gralForm);
 
         var div1 = $("<div>");
         div1.attr("class", "form-group");
 
         var label1 = $("<label>");
-        label1.attr("style", "margin-left: 65%");
+        // label1.attr("style", "margin-left: 65%");
         label1.attr("for", "Email1");
         label1.text("Email address");
 
         var input1 = $("<input>");
         input1.attr("type", "email");
         input1.attr("class", "form-control");
-        input1.attr("id", "newEmail");
+        // input1.attr("id", "newEmail");
         input1.attr("aria-describedby", "emailHelp");
         input1.attr("placeholder", "Enter email");
 
@@ -318,15 +322,15 @@ var food2U = {
         div2.attr("class", "form-group");
 
         var label2 = $("<label>");
-        label2.attr("style", "margin-left: 65%");
+        // label2.attr("style", "margin-left: 65%");
         label2.attr("for", "userName");
         label2.text("Username");
 
         var input2 = $("<input>");
         input2.attr("type", "text");
         input2.attr("class", "form-control");
-        input2.attr("id", "newUser");
-        input2.attr("placeholder", "Enter a Username");
+        // input2.attr("id", "newUser");
+        input2.attr("placeholder", "Enter a username");
 
         div2.append(label2);
         div2.append(input2);
@@ -336,15 +340,15 @@ var food2U = {
         div3.attr("class", "form-group");
 
         var label3 = $("<label>");
-        label3.attr("style", "margin-left: 65%");
+        // label3.attr("style", "margin-left: 65%");
         label3.attr("for", "newPass");
         label3.text("Password");
 
         var input3 = $("<input>");
         input3.attr("type", "password");
         input3.attr("class", "form-control");
-        input3.attr("id", "newPass");
-        input3.attr("placeholder", "Password");
+        // input3.attr("id", "newPass");
+        input3.attr("placeholder", "Enter a password");
 
         div3.append(label3);
         div3.append(input3);
@@ -362,13 +366,6 @@ var food2U = {
         div4.append(subBtn);
         target.append(div4);
 
-        var imgOptions = $("<img>");
-        imgOptions.attr("class", "logo");
-        imgOptions.attr("src", "./assets/images/lista1.png");
-        imgOptions.attr("alt", "Your Image");
-        imgOptions.attr("id", "Lista-1");
-
-        target.append(imgOptions);
         topC.append(target);
 
         $(document).delegate('#createUser','click',function(){
