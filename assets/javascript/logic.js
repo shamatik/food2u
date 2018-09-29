@@ -248,7 +248,7 @@ var food2U = {
 
         var title = $("<h1>");
         title.attr("class", "marginTop");
-        title.text("Food2U Ingredient List Manager");
+        title.text("Ingredient List Manager");
         target.append(title);
 
         var plead = $("<p>");
@@ -303,14 +303,12 @@ var food2U = {
         div1.attr("class", "form-group");
 
         var label1 = $("<label>");
-        // label1.attr("style", "margin-left: 65%");
         label1.attr("for", "Email1");
         label1.text("Email address");
 
         var input1 = $("<input>");
         input1.attr("type", "email");
         input1.attr("class", "form-control");
-        // input1.attr("id", "newEmail");
         input1.attr("aria-describedby", "emailHelp");
         input1.attr("placeholder", "Enter email");
 
@@ -322,14 +320,12 @@ var food2U = {
         div2.attr("class", "form-group");
 
         var label2 = $("<label>");
-        // label2.attr("style", "margin-left: 65%");
         label2.attr("for", "userName");
         label2.text("Username");
 
         var input2 = $("<input>");
         input2.attr("type", "text");
         input2.attr("class", "form-control");
-        // input2.attr("id", "newUser");
         input2.attr("placeholder", "Enter a username");
 
         div2.append(label2);
@@ -340,14 +336,12 @@ var food2U = {
         div3.attr("class", "form-group");
 
         var label3 = $("<label>");
-        // label3.attr("style", "margin-left: 65%");
         label3.attr("for", "newPass");
         label3.text("Password");
 
         var input3 = $("<input>");
         input3.attr("type", "password");
         input3.attr("class", "form-control");
-        // input3.attr("id", "newPass");
         input3.attr("placeholder", "Enter a password");
 
         div3.append(label3);
