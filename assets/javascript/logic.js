@@ -730,7 +730,7 @@ var food2U = {
 
         var id = prevElement.id;
 
-        var elemFullObj = searchObject[id];
+        var elemFullObj = food2U.searchObject[id];
 
         var recipe = elemFullObj.recipe;
 
