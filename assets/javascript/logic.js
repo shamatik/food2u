@@ -88,14 +88,14 @@ var food2U = {
                 localStorage.setItem("user2U", usrname);
                 food2U.logStatus = true;
                 food2U.actualUser = usrname;
-                
+
                 var navTarg = $("#navForm");
                 navTarg.empty();
 
-                var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+                var navLogout = $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
                 navLogout.text("Logout");
                 navTarg.append(navLogout);
-                $(document).delegate('#logoutBtn','click',function(){
+                $(document).delegate('#logoutBtn', 'click', function () {
                     event.preventDefault();
                     food2U.logout();
                 });
@@ -143,15 +143,15 @@ var food2U = {
             var navTarg = $("#navForm");
             navTarg.empty();
 
-            var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+            var navLogout = $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
             navLogout.text("Logout");
             navTarg.append(navLogout);
 
-            
-            $(document).delegate('#logoutBtn','click',function(){
+
+            $(document).delegate('#logoutBtn', 'click', function () {
                 event.preventDefault();
                 food2U.logout();
-                
+
             });
 
             food2U.dashboardDOMgen();
@@ -175,13 +175,13 @@ var food2U = {
                 var navTarg = $("#navForm");
                 navTarg.empty();
 
-                var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+                var navLogout = $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
                 navLogout.text("Logout");
                 navTarg.append(navLogout);
 
-                
 
-                $(document).delegate('#logoutBtn','click',function(){
+
+                $(document).delegate('#logoutBtn', 'click', function () {
                     event.preventDefault();
                     food2U.logout();
                 });
@@ -212,14 +212,14 @@ var food2U = {
 
             var inputName = $('<input class="form-control mr-sm-2" type="email" placeholder="Username" id="usrNameP">');
             var inputPass = $('<input class="form-control mr-sm-2" type="password" placeholder="Password" id="usrPassP">');
-            var navLogbtn= $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
+            var navLogbtn = $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
             navLogbtn.text("Log In");
-            
+
             navTarg.append(inputName);
             navTarg.append(inputPass);
             navTarg.append(navLogbtn);
-            
-            $(document).delegate('#loginBtn','click',function(){
+
+            $(document).delegate('#loginBtn', 'click', function () {
                 event.preventDefault();
                 $("#alertRow").empty();
                 var usr = $("#usrNameP").val();
@@ -235,11 +235,11 @@ var food2U = {
         } else {
             console.log("You're already logged out!");
         }
-        
+
     },
     "loginDOM": function () {
         //place to login or create newuser
-        
+
         var topC = $("#topContainer");
         topC.empty();
 
@@ -365,7 +365,7 @@ var food2U = {
 
         topC.append(target);
 
-        $(document).delegate('#createUser','click',function(){
+        $(document).delegate('#createUser', 'click', function () {
             event.preventDefault();
             $("#alertRow").empty();
             var Newusr = $("#newUser").val();
@@ -378,8 +378,8 @@ var food2U = {
             food2U.userCreate(Newusr, Newpass, NewMail);
         });
 
-        
-        $(document).delegate('#searchBtn','click',function(){
+
+        $(document).delegate('#searchBtn', 'click', function () {
             event.preventDefault();
             var recipieSearch = $("#search").val().trim();
             $("#search").val("");
@@ -549,9 +549,9 @@ var food2U = {
     },
 
 
-    "dashboardDOMgen": function(){
+    "dashboardDOMgen": function () {
         this.objectIngredients = [];
-        this.recipeName ="";
+        this.recipeName = "";
         $("#topContainer").empty();
 
         var topRow1 = $("<div>");
@@ -564,16 +564,16 @@ var food2U = {
         topRow1.append(suggestions);
 
         var card1 = $("<div>");
-        card1.attr("class","card")
+        card1.attr("class", "card")
         suggestions.append(card1);
 
         var cardBody1 = $("<div>");
-        cardBody1.attr("class","card-body");
-       // cardBody1.attr("id", "fav");
+        cardBody1.attr("class", "card-body");
+        // cardBody1.attr("id", "fav");
         card1.append(cardBody1);
 
         var cardBody1tittle = $("<h5>");
-        cardBody1tittle.attr("class","card-title");
+        cardBody1tittle.attr("class", "card-title");
         cardBody1tittle.text("Recipe of the month!");
         cardBody1.append(cardBody1tittle);
 
@@ -581,12 +581,12 @@ var food2U = {
         cardBody1.append(hr);
 
         var cardBody1text = $("<p>");
-        cardBody1text.attr("class","card-text");
+        cardBody1text.attr("class", "card-text");
         cardBody1text.text("The all awaited CHECK IT OUT!!!");
         cardBody1.append(cardBody1text);
 
         var cardBody1btn = $("<a>");
-        cardBody1btn.attr("class","btn btn-primary now");
+        cardBody1btn.attr("class", "btn btn-primary now");
         cardBody1btn.text("now!");
         cardBody1.append(cardBody1btn);
 
@@ -597,16 +597,16 @@ var food2U = {
         topRow1.append(fav);
 
         var card2 = $("<div>");
-        card2.attr("class","card")
+        card2.attr("class", "card")
         fav.append(card2);
 
         var cardBody1 = $("<div>");
-        cardBody1.attr("class","card-body");
-       // cardBody1.attr("id", "fav");
+        cardBody1.attr("class", "card-body");
+        // cardBody1.attr("id", "fav");
         card2.append(cardBody1);
 
         var cardBody1tittle = $("<h5>");
-        cardBody1tittle.attr("class","card-title");
+        cardBody1tittle.attr("class", "card-title");
         cardBody1tittle.text("Favorite Recipes");
         cardBody1.append(cardBody1tittle);
 
@@ -629,33 +629,32 @@ var food2U = {
         topRow1.append(lists);
 
         var card3 = $("<div>");
-        card3.attr("class","card")
+        card3.attr("class", "card")
         lists.append(card3);
 
         var cardBody1 = $("<div>");
-        cardBody1.attr("class","card-body");
-       // cardBody1.attr("id", "fav");
+        cardBody1.attr("class", "card-body");
+        // cardBody1.attr("id", "fav");
         card3.append(cardBody1);
 
         var cardBody1tittle = $("<h5>");
-        cardBody1tittle.attr("class","card-title");
+        cardBody1tittle.attr("class", "card-title");
         cardBody1tittle.text("List");
         cardBody1.append(cardBody1tittle);
 
         var hr = $("<hr>");
         cardBody1.append(hr);
-        
+
         var cardBody1btn = $("<a>");
-        cardBody1btn.attr("class","btn btn-primary clear");
+        cardBody1btn.attr("class", "btn btn-primary clear");
         cardBody1btn.text("Eliminar");
         cardBody1.append(cardBody1btn);
 
         $("#topContainer").append(topRow1);
-        
 
 
     },
-    "createRecipePageContainers": function() {
+    "createRecipePageContainers": function () {
         var divContainer = $("<div>");
         divContainer.attr("class", "container background");
 
@@ -766,9 +765,9 @@ var food2U = {
 
             $("#leftCol").append(btn);
 
-            
 
-            $(document).delegate('#create','click',function(){
+
+            $(document).delegate('#create', 'click', function () {
                 event.preventDefault();
                 food2U.loginDOM();
             });
@@ -788,7 +787,7 @@ var food2U = {
             var btn = $("#add");
             btn.addClass("disabled");
             btn.text("Added");
-            
+
         }
 
     },
@@ -801,7 +800,7 @@ var food2U = {
             var btn = $("#favRec");
             btn.addClass("disabled");
             btn.text("Recipe added");
-            
+
         }
 
     },
@@ -839,7 +838,7 @@ var food2U = {
 
         $("#rightCol").prepend(h2);
         $("#rightCol").append(ul);
-        
+
 
         //DE AQUI SE TIENE QUE LLAMAR
         //food2U.googlePlacesAPI();
@@ -878,36 +877,48 @@ var food2U = {
         //     });
         // });
 
-    }, 
+    },
 
-    "generateList": function() {
+    "generateList": function () {
         if (food2U.logStatus) {
             var yourList = $("<h1 class='marginTop'>");
-            yourList.text("Your List");
+            yourList.text("Your list:");
             var userRecipe = Object.getOwnPropertyNames(food2U.actualUser.lists);
-            var target =  $("#topRow");
+            var target = $("#topRow");
+            var br = $("<br>");
+            
+
             target.empty();
             target.append(yourList);
-            $(userRecipe).each(function (i, ele){
+            target.append(br);
+
+            var listItemsDiv = $("<div>");
+            listItemsDiv.attr("class", "offset-lg-4 col-lg-3");
+
+            $(userRecipe).each(function (i, ele) {
+
                 var recipeName = $("<h4>");
-                recipeName.attr("class","recipeName");
+                recipeName.attr("class", "recipeName");
                 recipeName.text(ele);
                 target.append(recipeName);
                 console.log(food2U.actualUser.lists[ele]);
-                $(food2U.actualUser.lists[ele]).each(function (index, element){
-                    var ingredientDiv = $("<div class='custom-control custom-checkbox'>");
-                    var inputDiv = $('<input type="checkbox" class="custom-control-input" id="'+index+element+'" checked>');
-                    var labelIngredient = $('<label class="custom-control-label" for="'+index+element+'">');
+
+                $(food2U.actualUser.lists[ele]).each(function (index, element) {
+                    var ingredientDiv = $("<div class='custom-control custom-checkbox border-bottom border-info no-align'>");
+                    var inputDiv = $('<input type="checkbox" class="custom-control-input" id="' + index + element + '" checked>');
+                    var labelIngredient = $('<label class="custom-control-label" for="' + index + element + '">');
                     labelIngredient.text(element);
                     ingredientDiv.append(inputDiv);
                     ingredientDiv.append(labelIngredient);
-                    target.append(ingredientDiv);
+                    listItemsDiv.append(ingredientDiv);
 
 
                 });
 
             });
-            
+
+            target.append(listItemsDiv);
+
             var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
             buttonCheckout.text("Check Out");
             target.append(buttonCheckout);
@@ -915,19 +926,19 @@ var food2U = {
 
             //aqui
             //  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
-            
+
         }
 
     },
 
-    "generateDOMsearchAlert": function(){
+    "generateDOMsearchAlert": function () {
 
     }
 
 
 };
 
- 
+
 
 
 
@@ -955,8 +966,8 @@ $(document).ready(function () {
 
     });
 
-    
-    $(document).delegate('#createUser','click',function(){
+
+    $(document).delegate('#createUser', 'click', function () {
         event.preventDefault();
         $("#alertRow").empty();
         var Newusr = $("#newUser").val();
