@@ -87,7 +87,15 @@ var food2U = {
                 });
                 localStorage.setItem("user2U", usrname);
                 food2U.logStatus = true;
-                food2U.actualUser = usrname;
+                var newusr = {
+                    "userName": usrname,
+                    "pass": usrpass,
+                    "email": usremail,
+                    "lists": "",
+                    "favoriteRecipie": "",
+                    "date": moment().format("DD-MM-YY")
+                };
+                food2U.actualUser = newusr;
 
                 var navTarg = $("#navForm");
                 navTarg.empty();
@@ -101,7 +109,7 @@ var food2U = {
                 });
 
                 food2U.dashboardDOMgen();
-
+                food2U.welcome();
 
             } else {
                 //Bootstrap alert already exist
@@ -816,7 +824,10 @@ var food2U = {
             //dataB.ref("users/"+food2U.actualUser.userName+"/lists/").set(food2U.recipeName);
             $(food2U.objectIngredients).each(function (i, ele) {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
+                
+                
             });
+            food2U.actualUser.lists[food2U.recipeName] = food2U.objectIngredients;
             var btn = $("#add");
             btn.addClass("disabled");
             btn.text("Added");
@@ -833,7 +844,7 @@ var food2U = {
             var btn = $("#favRec");
             btn.addClass("disabled");
             btn.text("Recipe added");
-
+            food2U.actualUser.favoriteRecipie[food2U.recipeName] = food2U.recipeName;
         }
 
     },
@@ -954,9 +965,9 @@ var food2U = {
 
             target.append(listItemsDiv);
 
-            var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0 customBut" type="submit" id="loginBtn">');
-            buttonCheckout.text("Check Out");
-            target.append(buttonCheckout);
+            // var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0 customBut" type="submit" id="loginBtn">');
+            // buttonCheckout.text("Check Out");
+            // target.append(buttonCheckout);
 
 
             //aqui
