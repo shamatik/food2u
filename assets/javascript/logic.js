@@ -550,7 +550,9 @@ var food2U = {
 
 
     "dashboardDOMgen": function(){
-    $("#topContainer").empty();
+        this.objectIngredients = [];
+        this.recipeName ="";
+        $("#topContainer").empty();
 
         var topRow1 = $("<div>");
         topRow1.attr("class", "col-md-12");
@@ -727,18 +729,32 @@ var food2U = {
         $("#leftCol").append(prevElement);
 
         if (food2U.logStatus) {
-            var btn = $("<button>");
+            var btn = $('<button aria-pressed="true" data-toggle="button">');
 
             btn.attr("type", "button");
             btn.attr("class", "btn btn-info customBut");
             btn.attr("id", "add");
-            btn.text("Add ingredients to list");
+            btn.text("Add ingredients");
             $("#leftCol").append(btn);
 
             $("#add").on("click", function () {
                 food2U.addCompletelist();
 
             });
+
+            var btnFav = $('<button aria-pressed="true" data-toggle="button">');
+
+            btnFav.attr("type", "button");
+            btnFav.attr("class", "btn btn-info customBut");
+            btnFav.attr("id", "favRec");
+            btnFav.text("Favorite");
+            $("#leftCol").append(btnFav);
+
+            $("#favRec").on("click", function () {
+                console.log("add fav");
+                food2U.favoriteRecipe();
+            });
+
 
         } else {
             var btn = $("<button>");
@@ -769,13 +785,23 @@ var food2U = {
             $(food2U.objectIngredients).each(function (i, ele) {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
-            var btn = $("<button disabled>");
-
-            btn.attr("type", "button");
-            btn.attr("class", "btn btn-info customBut");
-            btn.attr("id", "add");
+            var btn = $("#add");
+            btn.addClass("disabled");
             btn.text("Added");
-            $("#leftCol").append(btn);
+            
+        }
+
+    },
+    "favoriteRecipe": function () {
+        if (food2U.logStatus) {
+            console.log(food2U.actualUser.userName);
+            console.log(food2U.recipeName);
+            //dataB.ref("users/"+food2U.actualUser.userName+"/lists/").set(food2U.recipeName);
+            dataB.ref().child("/users").child(food2U.actualUser.userName).child("favoriteRecipie").child(food2U.recipeName).set(food2U.recipeName);
+            var btn = $("#favRec");
+            btn.addClass("disabled");
+            btn.text("Recipe added");
+            
         }
 
     },
@@ -860,6 +886,7 @@ var food2U = {
             yourList.text("Your List");
             var userRecipe = Object.getOwnPropertyNames(food2U.actualUser.lists);
             var target =  $("#topRow");
+            target.empty();
             target.append(yourList);
             $(userRecipe).each(function (i, ele){
                 var recipeName = $("<h4>");
@@ -888,10 +915,12 @@ var food2U = {
 
             //aqui
             //  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
-            var checkOutBtn = $("<button class='btn btn-outline-success my-2 my-sm-0' type='submit' id='checkoutBTN'>");
-            checkOutBtn.text("Log In");
-            target.append("checkOutBtn");
+            
         }
+
+    },
+
+    "generateDOMsearchAlert": function(){
 
     }
 
