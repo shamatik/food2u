@@ -309,8 +309,9 @@ var food2U = {
         var input1 = $("<input>");
         input1.attr("type", "email");
         input1.attr("class", "form-control");
+        input1.attr("id", "newEmail");
         input1.attr("aria-describedby", "emailHelp");
-        input1.attr("placeholder", "Enter email");
+        input1.attr("placeholder", "Enter an email address");
 
         div1.append(label1);
         div1.append(input1);
@@ -326,6 +327,7 @@ var food2U = {
         var input2 = $("<input>");
         input2.attr("type", "text");
         input2.attr("class", "form-control");
+        input2.attr("id", "newUser");
         input2.attr("placeholder", "Enter a username");
 
         div2.append(label2);
@@ -342,6 +344,7 @@ var food2U = {
         var input3 = $("<input>");
         input3.attr("type", "password");
         input3.attr("class", "form-control");
+        input3.attr("id", "newPass");
         input3.attr("placeholder", "Enter a password");
 
         div3.append(label3);
