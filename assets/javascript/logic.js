@@ -88,7 +88,20 @@ var food2U = {
                 localStorage.setItem("user2U", usrname);
                 food2U.logStatus = true;
                 food2U.actualUser = usrname;
-                //food2U.dashboradDOM();
+                
+                var navTarg = $("#navForm");
+                navTarg.empty();
+
+                var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+                navLogout.text("Logout");
+                navTarg.append(navLogout);
+                $(document).delegate('#logoutBtn','click',function(){
+                    event.preventDefault();
+                    food2U.logout();
+                });
+
+                food2U.dashboardDOMgen();
+
 
             } else {
                 //Bootstrap alert already exist
@@ -127,6 +140,22 @@ var food2U = {
                 console.log("Errors handled: " + errorObject.code);
             });
 
+            var navTarg = $("#navForm");
+            navTarg.empty();
+
+            var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+            navLogout.text("Logout");
+            navTarg.append(navLogout);
+
+            
+            $(document).delegate('#logoutBtn','click',function(){
+                event.preventDefault();
+                food2U.logout();
+                
+            });
+
+            food2U.dashboardDOMgen();
+
         } else {
             console.log("not logged");
         }
@@ -143,7 +172,22 @@ var food2U = {
             });
             if (food2U.logStatus) {
                 console.log("you're logged in");
-                //food2U.dashboradDOM();
+                var navTarg = $("#navForm");
+                navTarg.empty();
+
+                var navLogout= $("<button class='btn btn-danger my-2 my-sm-0' type='submit' id='logoutBtn'>");
+                navLogout.text("Logout");
+                navTarg.append(navLogout);
+
+                
+
+                $(document).delegate('#logoutBtn','click',function(){
+                    event.preventDefault();
+                    food2U.logout();
+                });
+
+                food2U.dashboardDOMgen();
+
             } else {
                 console.log("Wrong Usr or pass");
                 var alert = $("<div>");
@@ -162,39 +206,43 @@ var food2U = {
             localStorage.removeItem("user2U");
             this.actualUser = "";
             this.logStatus = false;
+
+            var navTarg = $("#navForm");
+            navTarg.empty();
+
+            var inputName = $('<input class="form-control mr-sm-2" type="email" placeholder="Username" id="usrNameP">');
+            var inputPass = $('<input class="form-control mr-sm-2" type="password" placeholder="Password" id="usrPassP">');
+            var navLogbtn= $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
+            navLogbtn.text("Log In");
+            
+            navTarg.append(inputName);
+            navTarg.append(inputPass);
+            navTarg.append(navLogbtn);
+            
+            $(document).delegate('#loginBtn','click',function(){
+                event.preventDefault();
+                $("#alertRow").empty();
+                var usr = $("#usrNameP").val();
+                var pass = $("#usrPassP").val();
+                $("#usrNameP").val("");
+                $("#usrPassP").val("");
+                //console.log(usr+" "+pass);
+                food2U.login(usr, pass);
+            });
+            food2U.loginDOM();
+
+
         } else {
             console.log("You're already logged out!");
         }
-        food2U.loginDOM();
+        
     },
     "loginDOM": function () {
         //place to login or create newuser
-        var nav = $("#loger");
-        nav.empty();
-        var navForm = $("<form>");
-        navForm.attr("class", "form-inline my-2 my-lg-0");
-        var navInput1 = $("<input>");
-        navInput1.attr("class", "form-control mr-sm-2");
-        navInput1.attr("type", "email");
-        navInput1.attr("placeholder", "Username");
-        navInput1.attr("id", "usrNameP");
-        navForm.append(navInput1);
-        var navInput2 = $("<input>");
-        navInput2.attr("class", "form-control mr-sm-2");
-        navInput2.attr("type", "password");
-        navInput2.attr("placeholder", "Password");
-        navInput2.attr("id", "usrPassP");
-        navForm.append(navInput2);
-        var navButton = $("<button>");
-        navButton.attr("class", "btn btn-outline-success my-2 my-sm-0");
-        navButton.attr("type", "submit");
-        navButton.attr("id", "loginBtn");
-        navButton.text("Log In");
-        navForm.append(navButton);
-        nav.append(navForm);
-
-        var target = $("#topRow");
-        target.empty();
+        
+        var topC = $("#topContainer");
+        topC.empty();
+        var target = $("<div id='topRow'>");
         target.attr("class", "col-md-10 offset-md-1");
 
         var title = $("<h1>");
@@ -204,7 +252,7 @@ var food2U = {
 
         var plead = $("<p>");
         plead.attr("class", "lead");
-        plead.text("Create your user or search for recipies!");
+        plead.text("Create an account or search for recipes!");
         target.append(plead);
 
 
@@ -321,20 +369,9 @@ var food2U = {
         imgOptions.attr("id", "Lista-1");
 
         target.append(imgOptions);
+        topC.append(target);
 
-        $("#loginBtn").on("click", function () {
-            event.preventDefault();
-            $("#alertRow").empty();
-            var usr = $("#usrNameP").val();
-            var pass = $("#usrPassP").val();
-            $("#usrNameP").val("");
-            $("#usrPassP").val("");
-            //console.log(usr+" "+pass);
-            food2U.login(usr, pass);
-
-        });
-
-        $("#createUser").on("click", function () {
+        $(document).delegate('#createUser','click',function(){
             event.preventDefault();
             $("#alertRow").empty();
             var Newusr = $("#newUser").val();
@@ -347,17 +384,17 @@ var food2U = {
             food2U.userCreate(Newusr, Newpass, NewMail);
         });
 
-        $("#searchBtn").on("click", function () {
+        
+        $(document).delegate('#searchBtn','click',function(){
             event.preventDefault();
             var recipieSearch = $("#search").val().trim();
             $("#search").val("");
             if (recipieSearch) {
                 console.log(recipieSearch);
-
+                food2U.searchAPI(recipieSearch);
             } else {
                 console.log("escribe wey!");
             }
-
         });
 
     },
@@ -387,12 +424,13 @@ var food2U = {
         }).then(function (response) {
             console.log(response.hits);
             searchObject = response.hits;
+            food2U.APIobject();
         });
     },
 
     //esto saca la info que se necesita desplegar
     "APIobject": function () {
-        console.log(searchObject);
+        //console.log(searchObject);
 
         $("#topContainer").empty();
 
@@ -522,7 +560,7 @@ var food2U = {
 
         var topRow1 = $("<div>");
         topRow1.attr("class", "col-md-12");
-        topRow1.attr("id", "topRow1");
+        topRow1.attr("id", "topRow");
 
         var suggestions = $("<div>");
         suggestions.attr("class", "col-md-3 dashboardCont");
@@ -705,6 +743,7 @@ var food2U = {
 
             $("#add").on("click", function () {
                 food2U.addCompletelist();
+
             });
 
         } else {
@@ -716,6 +755,13 @@ var food2U = {
             btn.text("Create username");
 
             $("#leftCol").append(btn);
+
+            
+
+            $(document).delegate('#create','click',function(){
+                event.preventDefault();
+                food2U.loginDOM();
+            });
         }
 
         // console.log(recipe);
@@ -729,6 +775,13 @@ var food2U = {
             $(food2U.objectIngredients).each(function (i, ele) {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
+            var btn = $("<button disabled>");
+
+            btn.attr("type", "button");
+            btn.attr("class", "btn btn-info customBut");
+            btn.attr("id", "add");
+            btn.text("Added");
+            $("#leftCol").append(btn);
         }
 
     },
@@ -841,8 +894,9 @@ var food2U = {
 
             //aqui
             //  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
-            
-
+            var checkOutBtn = $("<button class='btn btn-outline-success my-2 my-sm-0' type='submit' id='checkoutBTN'>");
+            checkOutBtn.text("Log In");
+            target.append("checkOutBtn");
         }
 
     }
@@ -878,12 +932,13 @@ $(document).ready(function () {
 
     });
 
-    $("#createUser").on("click", function () {
+    
+    $(document).delegate('#createUser','click',function(){
         event.preventDefault();
         $("#alertRow").empty();
-        var Newusr = $("#newUser").val().trim();
-        var Newpass = $("#newPass").val().trim();
-        var NewMail = $("#newEmail").val().trim();
+        var Newusr = $("#newUser").val();
+        var Newpass = $("#newPass").val();
+        var NewMail = $("#newEmail").val();
         $("#newUser").val("");
         $("#newPass").val("");
         $("#newEmail").val("");
@@ -899,7 +954,7 @@ $(document).ready(function () {
         $("#search").val("");
         if (recipieSearch) {
             console.log(recipieSearch);
-            //food2U.searchAPI(recipieSearch);
+            food2U.searchAPI(recipieSearch);
         } else {
             console.log("escribe wey!");
         }
