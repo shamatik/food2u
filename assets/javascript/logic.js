@@ -82,6 +82,7 @@ var food2U = {
                     pass: usrpass,
                     email: usremail,
                     lists: "",
+                    favoriteRecipie: "",
                     date: moment().format("DD-MM-YY")
                 });
                 localStorage.setItem("user2U", usrname);
@@ -515,7 +516,112 @@ var food2U = {
         $("#topContainer").append(divContainer);
     },
 
-    "createRecipePageContainers": function () {
+
+    "dashboardDOMgen": function(){
+    $("#topContainer").empty();
+
+        var topRow1 = $("<div>");
+        topRow1.attr("class", "col-md-12");
+        topRow1.attr("id", "topRow1");
+
+        var suggestions = $("<div>");
+        suggestions.attr("class", "col-md-3 dashboardCont");
+        suggestions.attr("id", "suggestions");
+        topRow1.append(suggestions);
+
+        var card1 = $("<div>");
+        card1.attr("class","card")
+        suggestions.append(card1);
+
+        var cardBody1 = $("<div>");
+        cardBody1.attr("class","card-body");
+       // cardBody1.attr("id", "fav");
+        card1.append(cardBody1);
+
+        var cardBody1tittle = $("<h5>");
+        cardBody1tittle.attr("class","card-title");
+        cardBody1tittle.text("Recipe of the month!");
+        cardBody1.append(cardBody1tittle);
+
+        var hr = $("<hr>");
+        cardBody1.append(hr);
+
+        var cardBody1text = $("<p>");
+        cardBody1text.attr("class","card-text");
+        cardBody1text.text("The all awaited CHECK IT OUT!!!");
+        cardBody1.append(cardBody1text);
+
+        var cardBody1btn = $("<a>");
+        cardBody1btn.attr("class","btn btn-primary now");
+        cardBody1btn.text("now!");
+        cardBody1.append(cardBody1btn);
+
+
+        var fav = $("<div>");
+        fav.attr("class", "col-md-3 dashboardCont");
+        fav.attr("id", "fav");
+        topRow1.append(fav);
+
+        var card2 = $("<div>");
+        card2.attr("class","card")
+        fav.append(card2);
+
+        var cardBody1 = $("<div>");
+        cardBody1.attr("class","card-body");
+       // cardBody1.attr("id", "fav");
+        card2.append(cardBody1);
+
+        var cardBody1tittle = $("<h5>");
+        cardBody1tittle.attr("class","card-title");
+        cardBody1tittle.text("Favorite Recipes");
+        cardBody1.append(cardBody1tittle);
+
+        var hr = $("<hr>");
+        cardBody1.append(hr);
+
+        // var cardBody1text = $("<p>");
+        // cardBody1text.attr("class","card-text");
+        // cardBody1text.text("The all awaited CHECK IT OUT!!!");
+        // cardBody1.append(cardBody1text);
+
+        // var cardBody1btn = $("<a>");
+        // cardBody1btn.attr("class","btn btn-primary now");
+        // cardBody1btn.text("now!");
+        // cardBody1.append(cardBody1btn);
+
+        var lists = $("<div>");
+        lists.attr("class", "col-md-3 dashboardCont");
+        lists.attr("id", "lists");
+        topRow1.append(lists);
+
+        var card3 = $("<div>");
+        card3.attr("class","card")
+        lists.append(card3);
+
+        var cardBody1 = $("<div>");
+        cardBody1.attr("class","card-body");
+       // cardBody1.attr("id", "fav");
+        card3.append(cardBody1);
+
+        var cardBody1tittle = $("<h5>");
+        cardBody1tittle.attr("class","card-title");
+        cardBody1tittle.text("List");
+        cardBody1.append(cardBody1tittle);
+
+        var hr = $("<hr>");
+        cardBody1.append(hr);
+        
+        var cardBody1btn = $("<a>");
+        cardBody1btn.attr("class","btn btn-primary clear");
+        cardBody1btn.text("Eliminar");
+        cardBody1.append(cardBody1btn);
+
+        $("#topContainer").append(topRow1);
+        
+
+
+    },
+    "createRecipePageContainers": function() {
         var divContainer = $("<div>");
         divContainer.attr("class", "container background");
 
@@ -624,6 +730,7 @@ var food2U = {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
         }
+
     },
 
     //ESTE LE AGREGA LA LISTA AL CHECKOUT
@@ -698,10 +805,52 @@ var food2U = {
         //     });
         // });
 
+    }, 
+
+    "generateList": function() {
+        if (food2U.logStatus) {
+            var yourList = $("<h1 class='marginTop'>");
+            yourList.text("Your List");
+            var userRecipe = Object.getOwnPropertyNames(food2U.actualUser.lists);
+            var target =  $("#topRow");
+            target.append(yourList);
+            $(userRecipe).each(function (i, ele){
+                var recipeName = $("<h4>");
+                recipeName.attr("class","recipeName");
+                recipeName.text(ele);
+                target.append(recipeName);
+                console.log(food2U.actualUser.lists[ele]);
+                $(food2U.actualUser.lists[ele]).each(function (index, element){
+                    var ingredientDiv = $("<div class='custom-control custom-checkbox'>");
+                    var inputDiv = $('<input type="checkbox" class="custom-control-input" id="'+index+element+'" checked>');
+                    var labelIngredient = $('<label class="custom-control-label" for="'+index+element+'">');
+                    labelIngredient.text(element);
+                    ingredientDiv.append(inputDiv);
+                    ingredientDiv.append(labelIngredient);
+                    target.append(ingredientDiv);
+
+
+                });
+
+            });
+            
+            var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
+            buttonCheckout.text("Check Out");
+            target.append(buttonCheckout);
+
+
+            //aqui
+            //  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">Log In</button>
+            
+
+        }
+
     }
 
 
 };
+
+ 
 
 
 
