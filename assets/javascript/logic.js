@@ -190,6 +190,7 @@ var food2U = {
                 });
 
                 food2U.dashboardDOMgen();
+                food2U.welcome();
 
             } else {
                 console.log("Wrong Usr or pass");
@@ -622,7 +623,7 @@ var food2U = {
         cardBody1.append(hr);
 
         var FAvArr = Object.getOwnPropertyNames(food2U.actualUser.favoriteRecipie);
-        if(FAvArr.length > 0) {
+        if(FAvArr[0] != "length") {
             $(FAvArr).each(function(i,ele){
                 var buttonL = $('<button type="button" class="btn btn-secondary btn-lg btn-block" style="font-size:13px;">');
                 buttonL.attr("id",i+"fav");
@@ -634,7 +635,7 @@ var food2U = {
                 });
             });
         } else {
-            var buttonL = $('<button type="button" class="btn btn-secondary btn-lg btn-block">');
+            var buttonL = $('<button type="button" class="btn btn-secondary btn-lg btn-block style="font-size:13px;">');
             buttonL.text("There are no Favs");
             cardBody1.append(buttonL);
         }
@@ -913,36 +914,38 @@ var food2U = {
 
     "generateList": function () {
         if (food2U.logStatus) {
+            var target = $("#topRow");
+            target.empty();
+
             var yourList = $("<h1 class='marginTop'>");
             yourList.text("Your list:");
-            var userRecipe = Object.getOwnPropertyNames(food2U.actualUser.lists);
-            var target = $("#topRow");
             var br = $("<br>");
             
-
-            target.empty();
             target.append(yourList);
             target.append(br);
 
             var listItemsDiv = $("<div>");
             listItemsDiv.attr("class", "offset-lg-4 col-lg-3");
 
+            var userRecipe = Object.getOwnPropertyNames(food2U.actualUser.lists);
             $(userRecipe).each(function (i, ele) {
 
                 var recipeName = $("<h4>");
                 recipeName.attr("class", "recipeName");
+                recipeName.attr("id",ele);
                 recipeName.text(ele);
                 target.append(recipeName);
-                console.log(food2U.actualUser.lists[ele]);
-
-                $(food2U.actualUser.lists[ele]).each(function (index, element) {
+                //console.log(food2U.actualUser.lists[ele]);
+                var arr = food2U.actualUser.lists[ele];
+                
+                $(arr).each(function (index, element) {
                     var ingredientDiv = $("<div class='custom-control custom-checkbox border-bottom border-info no-align'>");
                     var inputDiv = $('<input type="checkbox" class="custom-control-input" id="' + index + element + '" checked>');
                     var labelIngredient = $('<label class="custom-control-label" for="' + index + element + '">');
                     labelIngredient.text(element);
                     ingredientDiv.append(inputDiv);
                     ingredientDiv.append(labelIngredient);
-                    listItemsDiv.append(ingredientDiv);
+                    target.append(ingredientDiv);
 
 
                 });
@@ -951,7 +954,7 @@ var food2U = {
 
             target.append(listItemsDiv);
 
-            var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="loginBtn">');
+            var buttonCheckout = $('<button class="btn btn-outline-success my-2 my-sm-0 customBut" type="submit" id="loginBtn">');
             buttonCheckout.text("Check Out");
             target.append(buttonCheckout);
 
@@ -1001,6 +1004,7 @@ var food2U = {
         $(document).delegate('#homeBtn','click',function(){
             event.preventDefault();
             food2U.dashboardDOMgen();
+            food2U.welcome();
         });
     },
 
