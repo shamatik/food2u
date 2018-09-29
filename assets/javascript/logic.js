@@ -106,7 +106,7 @@ var food2U = {
     "logStatusRev": function () {
         var localusr = localStorage.getItem("user2U");
         console.log(localusr);
-        
+
         if (localusr) {
             console.log("logged");
             dataB.ref("users").once("value").then(function (childSnapshot) {
@@ -119,13 +119,13 @@ var food2U = {
                     if (localusr == result[element].userName) {
                         food2U.logStatus = true;
                         food2U.actualUser = result[element];
-                        
+
                     }
                 });
             }, function (errorObject) {
                 console.log("Errors handled: " + errorObject.code);
             });
-            
+
         } else {
             console.log("not logged");
         }
@@ -194,8 +194,8 @@ var food2U = {
 
         var target = $("#topRow");
         target.empty();
-        target.attr("class","col-md-10 offset-md-1");
-        
+        target.attr("class", "col-md-10 offset-md-1");
+
         var title = $("<h1>");
         title.attr("class", "marginTop");
         title.text("Food2U Ingredient List Manager");
@@ -205,42 +205,42 @@ var food2U = {
         plead.attr("class", "lead");
         plead.text("Create your user or search for recipies!");
         target.append(plead);
-        
-        
+
+
         var gralForm = $("<form>");
-        gralForm.attr("style","text-align:left;");
+        gralForm.attr("style", "text-align:left;");
 
         var divSearch = $("<div>");
-        divSearch.attr("class","row justify-content-center");
+        divSearch.attr("class", "row justify-content-center");
         divSearch.attr("id", "searchvar");
 
         var divcol12 = $("<div>");
-        divcol12.attr("class","col-12 col-md-10 col-lg-8");
-        
+        divcol12.attr("class", "col-12 col-md-10 col-lg-8");
+
         var divCardBody = $("<div>");
-        divCardBody.attr("class","card-body row no-gutters align-items-center");
+        divCardBody.attr("class", "card-body row no-gutters align-items-center");
         var divSearchBar = $("<div>");
-        divSearchBar.attr("class","col");
+        divSearchBar.attr("class", "col");
         var inputSearch = $("<input>");
-        inputSearch.attr("class","form-control form-control-lg form-control-borderless");
-        inputSearch.attr("id","search");
-        inputSearch.attr("type","search");
-        inputSearch.attr("placeholder","Search for recipes");
+        inputSearch.attr("class", "form-control form-control-lg form-control-borderless");
+        inputSearch.attr("id", "search");
+        inputSearch.attr("type", "search");
+        inputSearch.attr("placeholder", "Search for recipes");
         divSearchBar.append(inputSearch);
 
         var divSubBtn = $("<div>");
-        divSubBtn.attr("class","col-auto");
+        divSubBtn.attr("class", "col-auto");
         var subBtn = $("<button>");
-        subBtn.attr("class","btn btn-lg btn-success");
-        subBtn.attr("type","submit");
-        subBtn.attr("id","searchBtn");
-        subBtn.attr("style","background-color:#a8d3cc");
+        subBtn.attr("class", "btn btn-lg btn-success");
+        subBtn.attr("type", "submit");
+        subBtn.attr("id", "searchBtn");
+        subBtn.attr("style", "background-color:#a8d3cc");
         subBtn.text("Search");
         divSubBtn.append(subBtn);
-        
+
         divCardBody.append(divSearchBar);
         divCardBody.append(divSubBtn);
-        
+
         divcol12.append(divCardBody);
         divSearch.append(divcol12);
         gralForm.append(divSearch);
@@ -314,13 +314,13 @@ var food2U = {
         target.append(div4);
 
         var imgOptions = $("<img>");
-        imgOptions.attr("class","logo");
-        imgOptions.attr("src","./assets/images/lista1.png");
-        imgOptions.attr("alt","Your Image");
-        imgOptions.attr("id","Lista-1");
+        imgOptions.attr("class", "logo");
+        imgOptions.attr("src", "./assets/images/lista1.png");
+        imgOptions.attr("alt", "Your Image");
+        imgOptions.attr("id", "Lista-1");
 
         target.append(imgOptions);
-        
+
         $("#loginBtn").on("click", function () {
             event.preventDefault();
             $("#alertRow").empty();
@@ -346,17 +346,17 @@ var food2U = {
             food2U.userCreate(Newusr, Newpass, NewMail);
         });
 
-        $("#searchBtn").on ("click",function(){
+        $("#searchBtn").on("click", function () {
             event.preventDefault();
             var recipieSearch = $("#search").val().trim();
             $("#search").val("");
-            if(recipieSearch){
+            if (recipieSearch) {
                 console.log(recipieSearch);
 
-            } else{
+            } else {
                 console.log("escribe wey!");
             }
-            
+
         });
 
     },
@@ -364,7 +364,7 @@ var food2U = {
 
     //ejemplo
     "propiedadGenerica1": "",
-    "metodoGenerico": function() {
+    "metodoGenerico": function () {
 
     },
 
@@ -373,10 +373,10 @@ var food2U = {
     //search object de la API--USEN ESTE OBJECT PARA HACER PRUEBAS Y NO CAGARLA CON LOS REQUESTS
     "searchObject": "",
     "objectIngredients": "",
-    "recipeName":"",
+    "recipeName": "",
 
     //ajax request que actualiza nuestro searchObject con el request
-    "searchAPI": function(search) {
+    "searchAPI": function (search) {
         $.ajax({
             url: "https://api.edamam.com/search",
             method: "GET",
@@ -390,7 +390,7 @@ var food2U = {
     },
 
     //esto saca la info que se necesita desplegar
-    "APIobject": function() {
+    "APIobject": function () {
         console.log(searchObject);
 
         $("#topContainer").empty();
@@ -398,13 +398,9 @@ var food2U = {
         food2U.createResultsPageContainers();
 
         $(searchObject).each(function (index, element) {
-            
+
             var image = element.recipe.image;
             var name = element.recipe.label;
-            
-            //var index = index;
-
-            //console.log(index);
 
             food2U.createResultsPageDivs(name, image, index);
         });
@@ -413,16 +409,11 @@ var food2U = {
     },
 
     //en este se agregan los resultados y se organizan de acuerdo con los divs
-    "createResultsPageDivs": function(main, pic, index) {
+    "createResultsPageDivs": function (main, pic, index) {
 
         var div = $("<div>");
         div.attr("class", "card");
         div.attr("style", "width: 300px;");
-
-        // var blackBars = $("<div>");
-        // blackBars.attr("style", "height: 300px;");
-        // blackBars.attr("style", "width: 300px;");
-        // blackBars.attr("class", "black");
 
         var img = $("<img>");
 
@@ -444,7 +435,7 @@ var food2U = {
         p.attr("class", "card-text");
 
         divCard.append(p);
-        
+
         div.append(divCard);
 
         // blackBars.append(img);
@@ -458,7 +449,7 @@ var food2U = {
         }
 
     },
-    
+
 
     //este le asigna click events a cada search result
     "createClickEvents": function () {
@@ -500,7 +491,7 @@ var food2U = {
     },
 
     //este crea los container divs, rows y columns
-    "createResultsPageContainers": function() {
+    "createResultsPageContainers": function () {
         var divContainer = $("<div>");
         divContainer.attr("class", "container");
 
@@ -524,7 +515,7 @@ var food2U = {
         $("#topContainer").append(divContainer);
     },
 
-    "createRecipePageContainers": function() {
+    "createRecipePageContainers": function () {
         var divContainer = $("<div>");
         divContainer.attr("class", "container background");
 
@@ -548,7 +539,7 @@ var food2U = {
     },
 
     //method to display recipe on recipe page
-    "recipePageDisplay": function(prevElement) {
+    "recipePageDisplay": function (prevElement) {
         $("#topContainer").empty();
 
         food2U.createRecipePageContainers();
@@ -599,14 +590,14 @@ var food2U = {
 
         if (food2U.logStatus) {
             var btn = $("<button>");
-            
+
             btn.attr("type", "button");
             btn.attr("class", "btn btn-info customBut");
             btn.attr("id", "add");
             btn.text("Add ingredients to list");
             $("#leftCol").append(btn);
 
-            $("#add").on("click", function(){
+            $("#add").on("click", function () {
                 food2U.addCompletelist();
             });
 
@@ -622,20 +613,21 @@ var food2U = {
         }
 
         // console.log(recipe);
-        
+
     },
-    "addCompletelist": function() {
-        if(food2U.logStatus){
+    "addCompletelist": function () {
+        if (food2U.logStatus) {
             console.log(food2U.actualUser.userName);
             console.log(food2U.recipeName);
             //dataB.ref("users/"+food2U.actualUser.userName+"/lists/").set(food2U.recipeName);
-            $(food2U.objectIngredients).each(function(i,ele){
+            $(food2U.objectIngredients).each(function (i, ele) {
                 dataB.ref().child("/users").child(food2U.actualUser.userName).child("lists").child(food2U.recipeName).child(i).set(ele);
             });
         }
     },
 
-    "checkoutPageDOM": function() {
+    //ESTE LE AGREGA LA LISTA AL CHECKOUT
+    "checkoutPageDOM": function () {
         $("#topContainer").empty();
 
         food2U.createRecipePageContainers();
@@ -654,7 +646,7 @@ var food2U = {
         var br1 = $("<br>");
 
         $(ul).prepend(br);
-        $(ul).prepend(br1);
+        // $(ul).prepend(br1);
 
         $(ingredients).each(function (index, element) {
 
@@ -667,10 +659,44 @@ var food2U = {
 
         $("#rightCol").prepend(h2);
         $("#rightCol").append(ul);
-        // $("#leftCol").append();
+        
+
+        //DE AQUI SE TIENE QUE LLAMAR
+        //food2U.googlePlacesAPI();
     },
 
-    "googleMapsEmbed": function() {
+    "googlePlacesAPI": function () {
+        //api key for places: AIzaSyAYPV7_SOPv-3r1f5BPk4F-tU8PIj3Xq9c
+
+        //maps.googleapis.com/maps/api/place/findplacefromtext/json?input=mongolian%20grill&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyAYPV7_SOPv-3r1f5BPk4F-tU8PIj3Xq9c
+
+        //AJAX FAIL
+        // $.ajax({
+        //     url: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?",
+        //     method: "GET",
+        //     crossDomain: true,
+        //     dataType: 'json',
+        //     data: { "libraries": "places", "input": "supermarket", "inputtype": "textquery", "fields": "photos,formatted_address,name,opening_hours", "key": "AIzaSyAYPV7_SOPv-3r1f5BPk4F-tU8PIj3Xq9c" }
+        // }).then(function (response) {
+        //     console.log(response);
+        // });
+
+        var div = $("<div>");
+
+        div.attr("id", "map");
+        div.attr("style", "width: 300px;");
+        div.attr("style", "height: 300px;");
+
+        $("#leftCol").append(div);
+
+        //ESTE METODO SI JALA PERO ES CON EL PLUGIN QUE BAJE; ES MUY BASICO
+        // $(function () {
+        //     $("#map").googleMap({
+        //         zoom: 10, // Initial zoom level (optional)
+        //         coords: [48.895651, 2.290569], // Map center (optional)
+        //         type: "ROADMAP" // Map type (optional)
+        //     });
+        // });
 
     }
 
@@ -718,17 +744,17 @@ $(document).ready(function () {
     // if(food2U.actualUser) {
     //food2U.dashboradDOM();
     // }
-    $("#searchBtn").on ("click",function(){
+    $("#searchBtn").on("click", function () {
         event.preventDefault();
         var recipieSearch = $("#search").val().trim();
         $("#search").val("");
-        if(recipieSearch){
+        if (recipieSearch) {
             console.log(recipieSearch);
             //food2U.searchAPI(recipieSearch);
-        } else{
+        } else {
             console.log("escribe wey!");
         }
-        
+
     });
 });
 //fin de document
